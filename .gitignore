@@ -5,3 +5,4 @@ firmware/managed_components/
 firmware/dependencies.lock
 .DS_Store
 
+pcb/*_backup/
