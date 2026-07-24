@@ -16,6 +16,10 @@
 #define PIN_JOY_OE1  10  // DA15 pin14 /OE ($4016リード, 5V→分圧入力)
 #define PIN_JOY_D1   11  // DA15 pin13 Joypad1 /D1 データ出力 (3.3V直=TTL H)
 
+// --- 基板上ディスクリートLED ---
+#define PIN_LED_STAT 14  // 基板上ステータスLED(赤, GPIO High=点灯)。D2/R16経由
+// 電源LED(緑, D1)は+5Vに直結で常時点灯、GPIO不要
+
 // --- 内蔵 ---
-#define PIN_LED      21  // SK6812
+#define PIN_LED      21  // SK6812 (M5Stamp内蔵、シェルで隠れる場合の代替が基板LED)
 #define PIN_BTN      0   // BOOTボタン

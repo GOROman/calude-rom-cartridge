@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include "driver/gpio.h"
 #include "esp_littlefs.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
@@ -31,9 +32,19 @@ static void set_led(uint8_t r, uint8_t g, uint8_t b)
     led_strip_refresh(s_led);
 }
 
+static void stat_led(bool on)
+{
+    gpio_set_level(PIN_LED_STAT, on ? 1 : 0);
+}
+
 void app_main(void)
 {
     cart_loader_init();  // 最優先: バス不活性を確定
+
+    // 基板上ステータスLED(赤)。ロード成否を内蔵SK6812と二重表示
+    gpio_reset_pin(PIN_LED_STAT);
+    gpio_set_direction(PIN_LED_STAT, GPIO_MODE_OUTPUT);
+    stat_led(false);
 
     led_strip_config_t strip_cfg = {
         .strip_gpio_num = PIN_LED,
@@ -64,9 +75,11 @@ void app_main(void)
 
     if (cart_load_game(path)) {
         set_led(0, 32, 0);  // 緑: RESET待ち
+        stat_led(true);     // 基板LED点灯 = ロード完了、RESETを押す合図
     } else {
         ESP_LOGW(TAG, "no game loaded (%s)", path);
         set_led(32, 0, 0);  // 赤: 未ロード (Web UIからアップロード可)
+        stat_led(false);
     }
 
     joypad_out_init();
