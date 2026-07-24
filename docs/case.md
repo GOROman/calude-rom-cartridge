@@ -1,6 +1,6 @@
 # ケース適合 (Dendy/Famicom cartridge, Thingiverse thing:3357677)
 
-STL: `pcb/case/Dendy.stl`(下シェル)、`pcb/case/Dendy_top.stl`(上シェル)。作者 5rw。
+STL: `pcb/case/thing-3357677/files/Dendy.stl`(下シェル)、`Dendy_top.stl`(上シェル)。画像・README・LICENSEも同梱。作者 5rw。
 
 ## STL解析による寸法(バイナリSTLをパースして実測)
 
