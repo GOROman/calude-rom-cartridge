@@ -1,13 +1,15 @@
 # BOM (部品表)
 
+全ICはTSSOP/TSOPパッケージ、片面(TOP)リフロー実装前提。
+
 | Ref | 部品 | パッケージ | 数 | LCSC候補 | 備考 |
 |---|---|---|---|---|---|
-| U1, U2 | AS6C62256-55 (32K×8 SRAM) | SOP-28 (DIP代替: C5569983) | 2 | SOP版をEasyEDAで検索 | 5V動作、55ns |
-| U3-U8 | 74HCT595 | SOIC-16 | 6 | 74HCT595D | HC不可(HCT必須) |
-| U9-U12 | 74HCT541 | SOIC-20 | 4 | 74HCT541D | |
-| U13, U14 | 74HCT245 | SOIC-20 | 2 | 74HCT245D | DIR固定 B→A |
-| U15 | 74HCT32 | SOIC-14 | 1 | 74HCT32D | ORゲート |
-| U16 | 74HCT04 | SOIC-14 | 1 | 74HCT04D | インバータ |
+| U1, U2 | AS6C62256-55 (32K×8 SRAM) | TSOP-28 (AS6C62256-55STIN) | 2 | SOP版をEasyEDAで検索 | 5V動作、55ns |
+| U3-U8 | 74HCT595 | TSSOP-16 | 6 | 74HCT595D | HC不可(HCT必須) |
+| U9-U12 | 74HCT541 | TSSOP-20 | 4 | 74HCT541D | |
+| U13, U14 | 74HCT245 | TSSOP-20 | 2 | 74HCT245D | DIR固定 B→A |
+| U15 | 74HCT32 | TSSOP-14 | 1 | 74HCT32D | ORゲート |
+| U16 | 74HCT04 | TSSOP-14 | 1 | 74HCT04D | インバータ |
 | M1 | M5Stamp S3 | 2.54mmヘッダ/キャステレーション | 1 | ユーザー支給 | |
 | J2 | 5ピン JST-XH or 2.54ヘッダ | — | 1 | | DA15ケーブル用 |
 | JP1 | 3パッド半田ジャンパ | — | 1 | | ミラーリング H/V |
