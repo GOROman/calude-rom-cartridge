@@ -1,5 +1,15 @@
 # アーキテクチャ設計
 
+## マッパー対応: NROM + CNROM (Mapper 0/3)
+
+CHRバンクセレクトラッチ(74HCT173, U19)を搭載し、**NROM(Mapper0)とCNROM(Mapper3)の両対応**。
+
+- CNROMはCPUの$8000-$FFFF書き込みでD0-D1をラッチしCHRバンク(8KB単位)を切替える
+- 実装: U19=74HCT173。CP=M2、#E1/#E2=WR_STROBE(=NROMSEL OR RW、74HCT32の空きゲート)、#OE=MODE_N(RUN時のみ駆動)、Q0/Q1→CHR SRAM A13/A14
+- ロード中はESP32(595 U8のA13/A14出力)がCHRアドレス上位を駆動、実行中は173が駆動(MODEで排他)
+- CHR SRAM(AS6C62256, 32KB)は最大4バンク(32KB CHR)まで対応。対象ゲーム `calude-famicom-game` はCNROM/PRG32KB/CHR16KB(2バンク)/垂直ミラー
+- PRG書込は/WEをESP32が常時Highに保持するためバンク切替書き込みでSRAMは破壊されない
+
 ## 方式判断
 
 ESP32-S3によるカートリッジバスの直接エミュレーションは不成立:

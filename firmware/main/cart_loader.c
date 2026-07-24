@@ -14,7 +14,7 @@
 static const char *TAG = "cart_loader";
 
 #define PRG_SIZE 32768
-#define CHR_SIZE 8192
+#define CHR_SIZE 32768   // CHR SRAM 全容量(CNROM 4バンク分)。8/16KBはミラー書込
 
 static inline void set(int pin, int v) { gpio_set_level(pin, v); }
 
