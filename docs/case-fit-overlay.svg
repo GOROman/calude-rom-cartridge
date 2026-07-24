@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="540" viewBox="0 0 720 540">
+<rect width="720" height="540" fill="#111"/>
+<rect x="36.60000000000001" y="62.39999999999999" width="646.8" height="415.20000000000005" fill="none" stroke="#888" stroke-width="2"/>
+<text x="42" y="56.39999999999999" fill="#888" font-size="13">Case outer 107.8x69.2mm</text>
+<rect x="72" y="84" width="576" height="372" fill="none" stroke="#555" stroke-dasharray="4" stroke-width="1"/>
+<line x1="90" y1="477.59999999999997" x2="630" y2="477.59999999999997" stroke="#f80" stroke-width="3"/>
+<text x="240" y="489.0" fill="#f80" font-size="12">connector slot 90mm</text>
+<circle cx="375.6" cy="341.4" r="6.0" fill="none" stroke="#f44" stroke-width="2"/>
+<circle cx="344.4" cy="341.4" r="6.0" fill="none" stroke="#f44" stroke-width="2"/>
+<text x="396" y="341.4" fill="#f44" font-size="12">case screw (±2.6,-11.9) r1mm</text>
+<polyline points="90,201 630,201 630,326 603,326 603,338 630,338 630,478 595,478 595,542 125,542 125,478 90,478 90,338 117,338 117,326 90,326 90,201" fill="none" stroke="#4af" stroke-width="1" stroke-dasharray="3" opacity="0.5"/>
+<polyline points="90,201 630,201 630,478 595,478 595,542 125,542 125,478 90,478 90,201" fill="#2255aa" fill-opacity="0.15" stroke="#4af" stroke-width="2.5"/>
+<text x="96" y="216" fill="#4af" font-size="13">Board 90x56.8mm (tongue 78.4)</text>
+<rect x="578.98" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="563.74" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="548.5" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="533.26" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="518.02" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="502.78" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="487.54" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="472.29999999999995" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="457.06000000000006" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="441.82" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="426.58000000000004" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="411.34000000000003" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="396.09999999999997" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="380.86" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="365.62" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="350.38" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="335.14000000000004" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="319.9" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="304.65999999999997" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="289.42" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="274.18" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="258.94" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="243.70000000000002" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="228.45999999999998" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="213.21999999999997" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="197.98" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="182.74" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="167.5" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="152.26" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<rect x="137.02" y="495.59999999999997" width="4" height="34.199999999999974" fill="#dd0" opacity="0.8"/>
+<circle cx="344.4" cy="341.4" r="6.6000000000000005" fill="none" stroke="#4f4" stroke-width="2.5"/>
+<circle cx="375.6" cy="341.4" r="6.6000000000000005" fill="none" stroke="#4f4" stroke-width="2.5"/>
+<text x="396" y="354" fill="#4f4" font-size="12">board holes (on case screws) d2.2mm</text>
+<text x="10" y="20" fill="#ccc" font-size="14">Dendy case vs board — top view (case-center origin, mm)</text>
+</svg>
