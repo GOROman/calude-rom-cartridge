@@ -16,6 +16,14 @@
 #define PIN_JOY_OE1  10  // DA15 pin14 /OE ($4016リード, 5V→分圧入力)
 #define PIN_JOY_D1   11  // DA15 pin13 Joypad1 /D1 データ出力 (3.3V直=TTL H)
 
+// --- ES8388 オーディオCODEC ---
+#define PIN_I2S_MCLK 12  // ES8388 pin1 MCLK (48kHz時 12.288MHz)
+#define PIN_I2S_BCLK 13  // ES8388 pin5 SCLK/BCLK
+#define PIN_I2S_LRCK 15  // ES8388 pin7 LRCK
+#define PIN_I2S_DOUT 39  // ES8388 pin6 DSDIN
+#define PIN_I2C_SDA  40  // ES8388 pin27 CDATA
+#define PIN_I2C_SCL  41  // ES8388 pin28 CCLK
+
 // --- 基板上ディスクリートLED ---
 #define PIN_LED_STAT 14  // 基板上ステータスLED(赤, GPIO High=点灯)。D2/R16経由
 // 電源LED(緑, D1)は+5Vに直結で常時点灯、GPIO不要
