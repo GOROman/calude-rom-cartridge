@@ -2,6 +2,10 @@
 
 STL: `pcb/case/thing-3357677/files/Dendy.stl`(下シェル)、`Dendy_top.stl`(上シェル)。画像・README・LICENSEも同梱。作者 5rw。
 
+USB-C開口付き上シェル: `pcb/case/thing-3357677/files/Dendy_top_usb.stl`。
+M5Stamp S3のUSB中心に合わせ、右側面へ **11.0mm幅 × 5.5mm高** の開口を追加している。
+元STLは変更せず、`pcb/case/add_usb_opening.py` で再生成できる。
+
 ## STL解析による寸法(バイナリSTLをパースして実測)
 
 | 項目 | 値 |
@@ -22,6 +26,14 @@ STL: `pcb/case/thing-3357677/files/Dendy.stl`(下シェル)、`Dendy_top.stl`(�
 - タン **78.4mm**(±39.2)はスロット開口(±45)内に収まり、コンソール接点が届く
 - 基板高 **56.8mm** < 内部キャビティ **62mm**(ラベル部の余裕あり)
 - 基板幅 90mm < 内部キャビティ幅 96mm
+
+## M5Stamp S3 / USB-C位置
+
+- M1中心: 基板座標 **(78.9178, 20.32)mm**、回転 **90°**（USB右向き）
+- STL座標変換: `stl_x = pcb_x - 45`、`stl_y = 11.5 - pcb_y`
+- USB-C開口中心Y: STL座標 **-8.82mm**
+- M1のUSB側外形端: 基板座標 **X=92.342mm**。ケース内壁 **X=93mm相当** から内側へ約0.66mm
+- キャステレーションとテストパッドの銅箔端は基板右端 **X=90mm** 内に収まる
 
 ## ネジ穴(STL検出・準拠済み)
 

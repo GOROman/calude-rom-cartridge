@@ -35,14 +35,15 @@ LOAD中(バッファhi-Z)のバッファ出力ネットのプル設定:
 - U9 74HCT541: エッジ A0-A7 → PRG_A0-A7。/OE1=/OE2=MODE_N
 - U10 74HCT541: エッジ A8-A14, R/W, /ROMSEL → PRG_A8-A14, R/W_BUF, /ROMSEL_BUF。/OE=MODE_N
 - U13 74HCT245: B側=PRG_D0-D7、A側=エッジ D0-D7。DIR=B→A固定、/OE=/OE_PRG
-- U1 AS6C62256: A0-A14=PRG_A*、I/O=PRG_D*、/CE=/CE_PRG、/OE=/OE_PRG、/WE=/WE_PRG
+- U1 M68AF127B: A0-A14=PRG_A*、A15/A16=GND、DQ0-DQ7=PRG_D*、E1=/CE_PRG、E2=+5V、G=/OE_PRG、W=/WE_PRG
 
 ## CHR側 (PPUバス)
 
 - U11 74HCT541: エッジ PA0-PA7 → CHR_A0-A7。/OE=MODE_N
 - U12 74HCT541: エッジ PA8-PA12, PA13, /RD → CHR_A8-A12, PA13_BUF, /RD_BUF。/OE=MODE_N
 - U14 74HCT245: B側=CHR_D0-D7、A側=エッジ PD0-PD7。DIR=B→A固定、/OE=/OE_C245
-- U2 AS6C62256: A0-A12=CHR_A* (A13,A14→GND)、/CE=/CE_CHR、/OE=/OE_CHRSRAM、/WE=/WE_CHR
+- U2 M68AF127B: A0-A14=CHR_A*、A15/A16=GND、DQ0-DQ7=CHR_D*、E1=/CE_CHR、E2=+5V、G=/OE_CHRSRAM、W=/WE_CHR
+- J3 DEBUG 60PIN: J1の1〜60番ピンを同番号で1:1接続するデバッグ用メスコネクタ。ケース組み込み時DNP
 - PPU /WR (47): SRAMに非接続 (CHR-ROM相当、書込不可)
 
 ## 595チェーン (LOAD時のアドレス/データ注入)
@@ -63,6 +64,20 @@ LOAD中(バッファhi-Z)のバッファ出力ネットのプル設定:
 - /IRQ (15), M2 (32): 未接続 (M2はテストパッドのみ推奨)
 - +5V (30, 31要確認) → 5Vプレーン → M5Stamp S3 5V入力
 - GND (1, 16)
+
+## GreenPAK / OPMレジスタ捕捉
+
+U21 (SLG46826G) はCPUのOPMレジスタ書込みを捕捉し、M5Stamp S3から
+インシステム設定を書き換えられるようにする。
+
+- U21 VDD/VDD2 = +5V、GND = GND、C28=100nF
+- 入力: D0-D7、A0、R/W、M2、/RESET、/OPM_CS
+- 出力予約: OPM_IRQ、OPM_WR_STB
+- /OPM_CSは$5000-$5FFFを外部ロジックでデコードして生成する
+- GreenPAK I2C側: GPAK_SDA_5V / GPAK_SCL_5V
+- M5Stamp側: 既存ES8388と共用のGPIO40(SDA) / GPIO41(SCL)
+- Q1/Q2=BSS138、R26-R29=4.7kΩで5V↔3.3V双方向レベル変換する
+- GreenPAKのI2CアドレスはES8388 (0x10) と衝突しない値に設定する
 
 ## J2: 拡張ポート(DA15)ケーブル用コネクタ (BLEパッド注入)
 

@@ -19,6 +19,7 @@
 #include "led_strip.h"
 
 #include "cart_loader.h"
+#include "audio.h"
 #include "joypad_out.h"
 #include "pins.h"
 #include "web_server.h"
@@ -83,6 +84,13 @@ void app_main(void)
     }
 
     joypad_out_init();
+
+    // ES8388はオプション実装。未実装・I2C応答なしでもカートリッジ機能は継続する。
+    esp_err_t audio_err = audio_init();
+    if (audio_err != ESP_OK) {
+        ESP_LOGW(TAG, "audio disabled: %s", esp_err_to_name(audio_err));
+    }
+
     web_server_start();
 
     vTaskDelete(NULL);
