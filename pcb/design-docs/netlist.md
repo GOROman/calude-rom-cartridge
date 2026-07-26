@@ -75,9 +75,19 @@ U21 (SLG46826G) はCPUのOPMレジスタ書込みを捕捉し、M5Stamp S3から
 - 出力予約: OPM_IRQ、OPM_WR_STB
 - /OPM_CSは$5000-$5FFFを外部ロジックでデコードして生成する
 - GreenPAK I2C側: GPAK_SDA_5V / GPAK_SCL_5V
-- M5Stamp側: 既存ES8388と共用のGPIO40(SDA) / GPIO41(SCL)
+- M5Stamp側: GPIO40(SDA) / GPIO41(SCL)
 - Q1/Q2=BSS138、R26-R29=4.7kΩで5V↔3.3V双方向レベル変換する
-- GreenPAKのI2CアドレスはES8388 (0x10) と衝突しない値に設定する
+- PT8211は制御バスを使用しないため、GreenPAKがI2Cバスを単独使用する
+
+## PT8211 16-bit DAC
+
+- U20 = PT8211-S-TP、+5V単電源、SOP-8
+- シリアル入力 = BCK / WS / DINの3線。16-bit Japanese format（LSB-justified）で駆動
+- pin1 BCK = I2S_BCLK_MCU、pin2 WS = I2S_LRCK_MCU、pin3 DIN = I2S_DOUT_MCU
+- pin4 GND、pin5 VDD = +5V、pin6 LCH、pin7 NC、pin8 RCH
+- VDDはC21=100nFとC27=10µFでデカップリング
+- OUTL / OUTRは各20kΩでモノラル加算し、1µFでAC結合してAUDIO46へ入力
+- R14のAUDIO45-AUDIO46間0Ωパススルーは維持する
 
 ## J2: 拡張ポート(DA15)ケーブル用コネクタ (BLEパッド注入)
 
@@ -91,4 +101,4 @@ U21 (SLG46826G) はCPUのOPMレジスタ書込みを捕捉し、M5Stamp S3から
 
 ## パスコン
 
-各IC 100nF (17個)、5Vエントリに22µF、M5Stamp近傍に10µF。
+各IC 100nF (15個)、5Vエントリに22µF、M5Stamp近傍に10µF。
