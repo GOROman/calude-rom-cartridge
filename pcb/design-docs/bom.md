@@ -12,6 +12,7 @@
 | U15 | 74HCT32 | TSSOP-14 | 1 | 74HCT32D | ORゲート |
 | U16 | 74HCT04 | TSSOP-14 | 1 | 74HCT04D | インバータ |
 | U19 | 74HCT173 (4bit Dラッチ, 3ステート) | TSSOP-16 | 1 | 74HCT173D | CNROMバンクセレクト |
+| U20 | PCM5102APWR | TSSOP-20 | 1 | LCSC C107671 | 3線I2SステレオDAC、ハードウェア設定 |
 | U21 | SLG46826G GreenPAK | TSSOP-20 (0.65mmピッチ) | 1 | LCSC C3281959 / 秋月 118384 | OPMレジスタ書込み捕捉、M5StampからI2Cインシステム書換え |
 | Q1,Q2 | BSS138 | SOT-23 | 2 | | GreenPAK 5V側－M5Stamp 3.3V側 I2C双方向レベル変換 |
 | M1 | M5Stamp S3 | 2.54mmヘッダ/キャステレーション | 1 | ユーザー支給 | |
@@ -25,6 +26,11 @@
 | D1 | LED 緑 (電源) | 0603/1608・2端子 | 1 | KT-0603G (LCSC C12624) | +5V直結で常時点灯。D2と同一ランド形状 |
 | D2 | LED 赤 (ステータス) | 0603 | 1 | KT-0603R | ESP32 GPIO14駆動、ロード完了/RESET合図 |
 | R15,R16 | 330Ω (LED電流制限) | 0603 | 2 | 0603WAF3300T5E | D1/D2用 |
+| R17,R18 | 20kΩ | 0603 | 2 | 0603WAF2002T5E | PCM5102A L/Rモノラル加算 |
+| C20,C26 | 1µF | 0603 | 2 | CL10A105KB8NNNC | 音声AC結合、LDOOデカップリング |
+| C21-C23 | 100nF | 0603 | 3 | CL10B104KB8NNNC | PCM5102A CPVDD/AVDD/DVDDデカップリング |
+| C24,C25 | 2.2µF | 0603 | 2 | CL10A225KO8NNNC | チャージポンプ用 |
+| C27 | 10µF | 0805 | 1 | CL21A106KAYNNNE | PCM5102A 3.3Vバルク |
 | R26-R29 | 4.7kΩ | 0603 | 4 | 0603WAF4701T5E | I2C SDA/SCLの3.3V側・5V側プルアップ |
 | C* | 10µF | 0805 | 1 | | M5Stamp近傍 |
 | C28 | 100nF | 0603 | 1 | CC0603KRX7R9BB104 | U21 VDD/VDD2デカップリング |

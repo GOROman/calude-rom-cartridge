@@ -75,9 +75,19 @@ U21 (SLG46826G) はCPUのOPMレジスタ書込みを捕捉し、M5Stamp S3から
 - 出力予約: OPM_IRQ、OPM_WR_STB
 - /OPM_CSは$5000-$5FFFを外部ロジックでデコードして生成する
 - GreenPAK I2C側: GPAK_SDA_5V / GPAK_SCL_5V
-- M5Stamp側: 既存ES8388と共用のGPIO40(SDA) / GPIO41(SCL)
+- M5Stamp側: GPIO40(SDA) / GPIO41(SCL)
 - Q1/Q2=BSS138、R26-R29=4.7kΩで5V↔3.3V双方向レベル変換する
-- GreenPAKのI2CアドレスはES8388 (0x10) と衝突しない値に設定する
+- PCM5102Aはハードウェア設定でI2Cを使用しないため、GreenPAKがI2Cバスを単独使用する
+
+## PCM5102A I2S DAC
+
+- U20 = PCM5102APWR、3.3V単電源、ハードウェア設定
+- I2S = BCK / LRCK / DINの3線。SCKはGNDへ固定し、BCK内蔵PLLを使用
+- FMT / DEMP / FLT = GND、XSMT = 3V3
+- CAPP-CAPM = 2.2µF、VNEG-GND = 2.2µF、LDOO-GND = 1µF
+- CPVDD / AVDD / DVDDは各100nFでデカップリングし、3.3Vに10µFを配置
+- OUTL / OUTRは各20kΩでモノラル加算し、1µFでAC結合してAUDIO46へ入力
+- R14のAUDIO45-AUDIO46間0Ωパススルーは維持する
 
 ## J2: 拡張ポート(DA15)ケーブル用コネクタ (BLEパッド注入)
 
