@@ -14,7 +14,7 @@ esp_err_t audio_init(void)
 {
     esp_err_t ret = ESP_OK;
 
-    // PCM5102AはBCK内蔵PLLを使用するため、MCLKとI2C初期化は不要。
+    // PT8211はBCK/WS/DINのみを使うため、MCLKとI2C初期化は不要。
     i2s_chan_config_t chan_cfg =
         I2S_CHANNEL_DEFAULT_CONFIG(I2S_NUM_0, I2S_ROLE_MASTER);
     ESP_RETURN_ON_ERROR(i2s_new_channel(&chan_cfg, &s_i2s_tx, NULL),
@@ -22,7 +22,9 @@ esp_err_t audio_init(void)
 
     i2s_std_config_t std_cfg = {
         .clk_cfg = I2S_STD_CLK_DEFAULT_CONFIG(AUDIO_SAMPLE_RATE_HZ),
-        .slot_cfg = I2S_STD_PHILIPS_SLOT_DEFAULT_CONFIG(
+        // PT8211の16-bit Japanese formatは、16-bitスロットでは
+        // MSB-justified (bit_shift=false) と同じタイミングになる。
+        .slot_cfg = I2S_STD_MSB_SLOT_DEFAULT_CONFIG(
             I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_STEREO),
         .gpio_cfg = {
             .mclk = I2S_GPIO_UNUSED,
@@ -33,7 +35,8 @@ esp_err_t audio_init(void)
             .invert_flags = {
                 .mclk_inv = false,
                 .bclk_inv = false,
-                .ws_inv = false,
+                // PT8211はWS=Lで右、WS=Hで左。ESP-IDFのL/R極性を反転する。
+                .ws_inv = true,
             },
         },
     };
@@ -50,7 +53,7 @@ esp_err_t audio_init(void)
                                         &written, pdMS_TO_TICKS(100)),
                       fail_i2s, TAG, "initial silence");
 
-    ESP_LOGI(TAG, "PCM5102A I2S ready: 48 kHz, 16-bit stereo, 3-wire mode");
+    ESP_LOGI(TAG, "PT8211 ready: 48 kHz, 16-bit stereo, Japanese format");
     return ESP_OK;
 
 fail_i2s:

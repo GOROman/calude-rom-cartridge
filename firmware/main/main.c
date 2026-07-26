@@ -85,7 +85,7 @@ void app_main(void)
 
     joypad_out_init();
 
-    // PCM5102Aはハードウェア設定のため、I2S TXのみ初期化する。
+    // PT8211は制御バスを持たないため、I2S TXのみ初期化する。
     esp_err_t audio_err = audio_init();
     if (audio_err != ESP_OK) {
         ESP_LOGW(TAG, "audio disabled: %s", esp_err_to_name(audio_err));

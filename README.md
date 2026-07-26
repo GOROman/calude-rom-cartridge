@@ -3,7 +3,7 @@
 ファミコン実機で動作するカートリッジ基板。物理ROMの代わりに
 **M5Stamp S3 (ESP32-S3)** を搭載し、電源投入時にROMイメージをSRAMへ
 転送してファミコンにバスを明け渡す「SRAMロード&ハンドオーバー方式」を
-採用しています。NROM/CNROMに対応し、PCM5102AによるI2S音声ミックスと
+採用しています。NROM/CNROMに対応し、PT8211による音声ミックスと
 SLG46826G GreenPAKによるOPMレジスタ捕捉回路をオプション搭載できます。
 
 ![M5Stamp S3搭載ファミコンカートリッジ基板の3Dプレビュー](docs/pcb-3d-preview.png)
@@ -22,7 +22,7 @@ SLG46826G GreenPAKによるOPMレジスタ捕捉回路をオプション搭載�
 - ROM相当: M68AF127B SRAM ×2 (PRG/CHR)
 - ロード経路: 74HCT595 シフトレジスタチェーン ×2
 - バス分離: 74HCT541/245 バッファ、74HCT32 ゲーティング
-- 音声: M5Stamp S3の3線I2S → PCM5102A → カートリッジ音声端子45/46へミックス（オプション、未実装でも動作）
+- 音声: M5Stamp S3の3線シリアル音声 → PT8211 → カートリッジ音声端子45/46へミックス（オプション、未実装でも動作）
 - 拡張ロジック: SLG46826G GreenPAKをM5Stamp S3からI2Cで書き換え、OPMレジスタ書込みを捕捉
 - 外形: 純正シェル互換の段付き外形（最大90×56.8mm、主要部90×46.1mm）、板厚1.2mm
 - 60ピンエッジ: 全端子幅1.60mm、先端テーパー、垂直引き込み、挿入側左右角R1.524mm
@@ -41,7 +41,7 @@ SLG46826G GreenPAKによるOPMレジスタ捕捉回路をオプション搭載�
 | U15 | 74HCT32 | 1 | `/ROMSEL`、`R/W`、PPU制御信号を組み合わせ、SRAMとデータバッファの出力許可信号を生成 |
 | U16 | 74HCT04 | 1 | `MODE`や`R/W`などの制御信号を反転 |
 | U19 | 74HCT173 | 1 | CNROMのCHRバンク番号を保持し、CHR SRAMのA13/A14を切り替える |
-| U20 | PCM5102A | 1 | M5Stamp S3の3線I2Sをアナログ音声へ変換。L/Rを抵抗加算し、45/46番端子へミックスするオプション実装 |
+| U20 | PT8211-S-TP | 1 | M5Stamp S3の16-bit Japanese-format音声をアナログ変換。L/Rを抵抗加算し、45/46番端子へミックスするオプション実装 |
 | U21 | SLG46826G GreenPAK | 1 | OPM用メモリマップドI/Oの書込み捕捉。M5Stamp S3からI2Cでインシステム設定 |
 | Q1, Q2 | BSS138 | 2 | GreenPAKの5V I2CとM5Stamp S3の3.3V I2Cを双方向レベル変換 |
 | J2 | 5ピンコネクタ | 1 | ファミコン前面DA15拡張ポートとの接続用。OUT0、`/OE joy1`、Joypad D1を扱う |
@@ -51,7 +51,7 @@ SLG46826G GreenPAKによるOPMレジスタ捕捉回路をオプション搭載�
 | R1–R4 | 10kΩ/20kΩ | 4 | DA15からの5V入力信号をM5Stamp S3用の3.3Vへ分圧 |
 | R（プルアップ/ダウン） | 10kΩ | 8 | 起動時やLOAD時のMODE、SRAM、バッファ制御信号を安全な状態に固定 |
 | R（直列） | 33Ω | 4 | 74HCT595の高速シフト信号のリンギングとノイズを抑制 |
-| C（パスコン） | 100nF | 17 | 各ICの電源ノイズを除去 |
+| C（パスコン） | 100nF | 15 | 各ICの電源ノイズを除去 |
 | C（バルク） | 22µF + 10µF | 各1 | 5V入力とM5Stamp S3近傍の電源変動を吸収 |
 | R26–R29 | 4.7kΩ | 4 | GreenPAK I2Cレベル変換回路の3.3V側・5V側プルアップ |
 | C28 | 100nF | 1 | GreenPAKのVDD/VDD2デカップリング |
@@ -77,6 +77,7 @@ SLG46826G GreenPAKによるOPMレジスタ捕捉回路をオプション搭載�
 | R（20kΩ） | [チップ抵抗 1/10W 20kΩ 1608](https://akizukidenshi.com/catalog/g/g106203/) | DA15入力の分圧に使用可能。販売単位に注意 |
 | R（330Ω） | [チップ抵抗 1/10W 330Ω 1608](https://akizukidenshi.com/catalog/g/g116125/) | LED電流制限に使用可能 |
 | U21 | [SLG46826G GreenPAK](https://akizukidenshi.com/catalog/g/g118384/) | TSSOP-20。I2Cでインシステム設定可能 |
+| U20 | [PT8211-S-TP 16-bit 2ch DAC](https://akizukidenshi.com/catalog/g/g117061/) | SOP-8、1.27mmピッチ。通常のPhilips I2Sではなく16-bit Japanese formatで駆動 |
 
 74HCT595、74HCT541、74HCT245、74HCT32、74HCT04、74HCT173については、基板の表面実装フットプリントに適合する秋月電子の商品を確認できていません。74HC/LV/VHC品は入力しきい値や動作条件が異なるため代用せず、HCT品をLCSCなどから調達します。
 
@@ -84,7 +85,7 @@ SLG46826G GreenPAKによるOPMレジスタ捕捉回路をオプション搭載�
 
 - **WiFi転送**: softAP (`FC-CART`) + Web UI (`http://192.168.4.1/`) で .nes アップロード/ゲーム切替
 - **Bluetoothコントローラ**: 拡張ポート(DA15)経由でパッド入力を注入(BLEパッド → Bluepad32 統合予定)。カートリッジ端子にはコントローラ信号が無いため J2→DA15 ケーブルを使用
-- **I2S音声**: PCM5102AのBCK内蔵PLLを使い、MCLKなしのBCK/LRCK/DINで端子45/46へミックス
+- **音声**: PT8211をMCLKなしのBCK/WS/DIN、16-bit Japanese formatで駆動し、端子45/46へミックス
 - **GreenPAK設定**: SLG46826GをI2C経由で更新し、OPMエミュレーション用レジスタ書込みを捕捉
 
 ## 現在の設計状態

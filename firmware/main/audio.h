@@ -6,7 +6,7 @@
 
 #define AUDIO_SAMPLE_RATE_HZ 48000
 
-// PCM5102A向け3線I2S TXを初期化する。
+// PT8211向け3線シリアルTX (16-bit Japanese format) を初期化する。
 esp_err_t audio_init(void);
 
 // 16-bit signed little-endian stereo PCMを書き込む。

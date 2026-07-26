@@ -16,10 +16,10 @@
 #define PIN_JOY_OE1  10  // DA15 pin14 /OE ($4016リード, 5V→分圧入力)
 #define PIN_JOY_D1   11  // DA15 pin13 Joypad1 /D1 データ出力 (3.3V直=TTL H)
 
-// --- PCM5102A 3線I2S DAC ---
-#define PIN_I2S_BCLK 13  // PCM5102A pin13 BCK
-#define PIN_I2S_LRCK 15  // PCM5102A pin15 LRCK
-#define PIN_I2S_DOUT 39  // PCM5102A pin14 DIN
+// --- PT8211-S-TP 3線シリアルDAC ---
+#define PIN_I2S_BCLK 13  // PT8211 pin1 BCK
+#define PIN_I2S_LRCK 15  // PT8211 pin2 WS
+#define PIN_I2S_DOUT 39  // PT8211 pin3 DIN
 
 // --- GreenPAK書き換え用I2C ---
 #define PIN_I2C_SDA  40
